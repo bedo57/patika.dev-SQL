@@ -14,5 +14,4 @@ payment tablosunda en fazla sayıda alışveriş yapan müşterileri(customer) s
 select sum(amount), customer.first_name, customer.last_name from customer
 join payment on payment.customer_id = customer.customer_id
 group by payment.customer_id, customer.first_name, customer.last_name
-order by sum(amount) desc
-limit 1;
+order by sum(amount) desc;
