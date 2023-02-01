@@ -11,5 +11,8 @@ select * from film
 where (rental_rate = (select min(rental_rate) from film)) and (replacement_cost = (select min(replacement_cost) from film));
 
 payment tablosunda en fazla sayıda alışveriş yapan müşterileri(customer) sıralayınız.
-select * from payment
-where customer_id = (select max(customer_id) from payment);
+select sum(amount), customer.first_name, customer.last_name from customer
+join payment on payment.customer_id = customer.customer_id
+group by payment.customer_id, customer.first_name, customer.last_name
+order by sum(amount) desc
+limit 1;
